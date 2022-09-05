@@ -57,3 +57,6 @@ console.log(cityNames)
 
 var cityPops = cities.map(cPop => cPop.population);
 console.log(cityPops)
+
+var largeCities = cities.filter(cPop => cPop.population > 1500000);
+console.log(largeCities)
