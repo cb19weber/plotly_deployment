@@ -4,7 +4,7 @@ function init() {
   
     // Use the list of sample names to populate the select options
     d3.json("static/js/samples.json").then((data) => {
-      console.log(data);
+      // console.log(data);
       var sampleNames = data.names;
       sampleNames.forEach((sample) => {
         selector
@@ -62,7 +62,7 @@ function buildCharts(sample) {
 
       //  5. Create a variable that holds the first sample in the array.
       var sampleResults = sampleArray[0];
-      console.log(sampleResults)
+      // console.log(sampleResults)
   
       // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
       var otuIDs = Object.values(sampleResults.otu_ids);
