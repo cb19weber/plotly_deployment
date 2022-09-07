@@ -16,7 +16,6 @@ function init() {
       // Use the first sample from the list to build the initial plots
       var firstSample = sampleNames[0];
       buildMetadata(firstSample);
-      buildCharts(firstSample);
     });
 }
   
@@ -26,7 +25,6 @@ init();
 // Fetch new data each time a new sample is selected
 function optionChanged(newSample) {
     buildMetadata(newSample);
-    buildCharts(newSample);
 }
 
 // Demographics Panel
