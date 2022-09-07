@@ -70,7 +70,7 @@ function buildMetadata(sample) {
       var result = resultArray[0];
 
       // console.log(sampleResults)
-      // console.log(result)
+      console.log(result)
   
       // 1.6. Create variables that hold the otu_ids, otu_labels, and sample_values. (also required for Deliverables 2,3)
       var otuIDs = Object.values(sampleResults.otu_ids);
@@ -100,10 +100,27 @@ function buildMetadata(sample) {
 
       // Deliverable 2
       // 2.1. Create the trace for the bubble chart.
-      var bubbleData = [];
+      var desired_maximum_marker_size = 120;
+      var bubbleData = [{
+        x: otuIDs,
+        y: sampleValues,
+        text: otuLabels,
+        mode: "markers",
+        marker: {
+            color: otuIDs,
+            size: sampleValues,
+            opacity: .8,
+            // Adjusted size of the markers to avoid having overlap and make the visual cleaner
+            sizeref: 2.0 * Math.max(...sampleValues) / (desired_maximum_marker_size**2),
+            sizemode: 'area'
+        }
+      }];
       
       // 2.2. Create the layout for the bubble chart.
-      var bubbleLayout = {};
+      var bubbleLayout = {
+        title: "Bacteria Cultures Per Sample",
+        xaxis: {title: "OTU ID"}
+      };
       // 2.3. Use Plotly to plot the data with the layout.
       Plotly.newPlot("bubble", bubbleData, bubbleLayout);
 
