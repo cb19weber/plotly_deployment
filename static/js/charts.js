@@ -70,7 +70,7 @@ function buildMetadata(sample) {
       var result = resultArray[0];
 
       // console.log(sampleResults)
-      console.log(result)
+      // console.log(result)
   
       // 1.6. Create variables that hold the otu_ids, otu_labels, and sample_values. (also required for Deliverables 2,3)
       var otuIDs = Object.values(sampleResults.otu_ids);
@@ -119,7 +119,8 @@ function buildMetadata(sample) {
       // 2.2. Create the layout for the bubble chart.
       var bubbleLayout = {
         title: "Bacteria Cultures Per Sample",
-        xaxis: {title: "OTU ID"}
+        xaxis: {title: "OTU ID"},
+        showlegend: false
       };
       // 2.3. Use Plotly to plot the data with the layout.
       Plotly.newPlot("bubble", bubbleData, bubbleLayout);
@@ -127,12 +128,32 @@ function buildMetadata(sample) {
       // Deliverable 3
 
       // 3. Create a variable that holds the washing frequency.
+      selectedWfreq = parseFloat(result.wfreq)
 
       // 4. Create the trace for the gauge chart.
-      var gaugeData = [];
+      var gaugeData = [{
+        domain: {x: [0,1], y: [0,1]},
+        value: selectedWfreq,
+        title: {text: "Washing Frequency"},
+        type: "indicator",
+        mode: "gauge+number",
+        gauge: {
+            axis: { range: [null, 10], dtick: 2 },
+            bar: { color: "black" },
+            steps: [
+                { range: [0,2], color: "saddlebrown" },
+                { range: [2,4], color: "burlywood"},
+                { range: [4,6], color: "cornflowerblue"},
+                { range: [6,8], color: "lightblue"},
+                { range: [8,10], color: "lavender"}
+            ]
+        }
+      }];
 
       // 5. Create the layout for the gauge chart.
-      var gaugeLayout = {};
+      var gaugeLayout = {
+        margin: {t: 0, b: 0}
+      };
 
       // 6. Use Plotly to plot the gauge data and layout.
       Plotly.newPlot("gauge", gaugeData, gaugeLayout);
