@@ -152,8 +152,7 @@ function buildMetadata(sample) {
 
       // 5. Create the layout for the gauge chart.
       var gaugeLayout = {
-        margin: {t: 0, b: 0},
-        images: {source: "static/images/bubbles.png"}
+        margin: {t: 0, b: 0}
       };
 
       // 6. Use Plotly to plot the gauge data and layout.
